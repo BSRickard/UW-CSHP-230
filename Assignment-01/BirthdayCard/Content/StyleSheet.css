@@ -1,0 +1,46 @@
+﻿.btn a {
+    color: white;
+    text-decoration: none;
+}
+
+body {
+    background-color: white;
+}
+.myTable {
+    width: 400px;
+    background-color: black;
+    border-collapse: collapse;
+}
+
+    .myTable th {
+        background-color: black;
+        color: grey;
+        width: 100%;
+    }
+
+    .myTable td, .myTable th {
+        padding: 5px;
+        border: 1px solid #000;
+    }
+
+.field-validation-error {
+    color: #f00;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.input-validation-error {
+    border: 1px solid #f00;
+    background-color: #fee;
+}
+
+.validation-summary-errors {
+    font-weight: bold;
+    color: #f00;
+}
+
+.validation-summary-valid {
+    display: none;
+}

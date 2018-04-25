@@ -1,0 +1,42 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/StyleSheet.css" rel="stylesheet" />
+    <script src="//code.jquery.com/jquery-latest.js"></script>
+    <script>
+        $(document).ready(function () {
+            var txt = $("input[id$=TextBox1]");
+            var span = $(txt).next();
+            $(txt).keyup(function () {
+                var length = $(txt).val().length;
+                $(span).text(length + " characters long");
+                $(span).css("background-color", length >= 8 ? "#FF0000" : "#FFFFFF");
+            });
+        });
+    </script>
+</head>
+<body>
+    @Html.Include("~/Includes/header.html")
+    <table width="400" style="margin-left:auto; margin-right:auto; text-align:center" cellpadding="5">
+        <tr><td><h1>Send a Birthday Card</h1></td></tr>
+    </table>
+    <table width="400" style="margin-left:auto; margin-right:auto; text-align:left" cellpadding="5">
+        <tr>
+            <td>
+                <div class="btn btn-success">
+                    <strong>@Html.ActionLink("Send a Birthday Card", "CardForm")</strong>
+                </div>
+            </td>
+        </tr>
+    </table>
+    @Html.Include("~/Includes/footer.html")
+</body>
+</html>

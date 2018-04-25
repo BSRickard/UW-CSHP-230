@@ -1,0 +1,30 @@
+﻿@model BirthdayCard.Models.BirthdayCard
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Birthday Card Sent</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/StyleSheet.css" rel="stylesheet" />
+</head>
+
+<body>
+    @Html.Include("~/Includes/header.html")
+    <table width="400" style="margin-left:auto; margin-right:auto; text-align:center" cellpadding="5">
+        <tr><td><h1>Birthday Card Sent</h1></td></tr>
+    </table>
+    <table width="400" style="margin-left:auto; margin-right:auto; text-align:left" cellpadding="5">
+        @* '@Model' is short for '@Html.DisplayTextFor(t => Model' *@
+        <tr><td>From:    @Html.DisplayTextFor(t => Model.From)</td></tr>
+        <tr><td>To:      @Model.To</td></tr>
+        <tr><td>Message: @Model.Message</td></tr>
+    </table>
+    @Html.Include("~/Includes/footer.html")
+</body>
+</html>

@@ -1,0 +1,35 @@
+﻿@model BirthdayCard.Models.BirthdayCard
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Send a Birthday Card</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/StyleSheet.css" rel="stylesheet" />
+</head>
+
+<body>
+    @Html.Include("~/Includes/header.html")
+    <table width="400" style="margin-left:auto; margin-right:auto; text-align:center" cellpadding="5">
+        <tr><td><h1>Send a Birthday Card</h1></td></tr>
+    </table>
+    @using (Html.BeginForm())
+    {
+        <table width="400" style="margin-left:auto; margin-right:auto; text-align:left" cellpadding="5">
+            <tr><td>@Html.ValidationSummary()</td></tr>
+            <tr><td>From: @Html.TextBoxFor(t => t.From)</td></tr>
+            <tr><td>To: @Html.TextBoxFor(t => t.To)</td></tr>
+            <tr><td>Message: @Html.TextBoxFor(t => t.Message)</td></tr>
+            <tr><td></td></tr>
+            <tr><td><input type="submit" class="btn btn-success" value="Send Card" /></td></tr>
+        </table>
+    }
+    @Html.Include("~/Includes/footer.html")
+</body>
+</html>
