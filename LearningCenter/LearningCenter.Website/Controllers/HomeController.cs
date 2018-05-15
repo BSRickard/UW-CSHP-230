@@ -49,6 +49,35 @@ namespace LearningCenter.Website.Controllers
             return View(model);
         }
 
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Register(RegisterModel registerModel, string returnUrl)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = userManager.Register(registerModel.Email, registerModel.Password);
+
+                if (user == null)
+                {
+                    ModelState.AddModelError("", "User name already exists.");
+                }
+                else
+                {
+                    Session["User"] = new LearningCenter.Website.Models.UserModel { Id = user.Id, Name = user.Name };
+
+                    System.Web.Security.FormsAuthentication.SetAuthCookie(registerModel.Email, false);
+
+                    return Redirect(returnUrl ?? "~/");
+                }
+            }
+
+            return View(registerModel);
+        }
+
         public ActionResult LogIn()
         {
             return View();
