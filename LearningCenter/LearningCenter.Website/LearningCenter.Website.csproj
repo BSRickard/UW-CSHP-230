@@ -320,6 +320,7 @@
     <Content Include="Views\Home\ClassList.cshtml" />
     <Content Include="Views\Home\LogIn.cshtml" />
     <Content Include="Views\Home\Register.cshtml" />
+    <Content Include="Views\Home\Enroll.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

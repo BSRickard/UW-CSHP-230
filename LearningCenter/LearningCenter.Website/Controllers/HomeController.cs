@@ -49,6 +49,24 @@ namespace LearningCenter.Website.Controllers
             return View(model);
         }
 
+        public ActionResult Enroll()
+        {
+            var classes = classManager.Classes
+                .Select(t => new LearningCenter.Website.Models.ClassModel(t.Id, t.Name, t.Description, t.Price))
+                .ToArray();
+            var model = new ClassListModel { Classes = classes };
+            return View(model);
+        }
+
+        [HttpPost]
+        // TODO: Need to work out how to get the selection made on Enroll.cshtml
+        // Tried various types of parameters (ClassListModel, string, int) - always null (so far)
+        public ActionResult Enroll(string aClass, string returnUrl)
+        {
+            return View();
+
+        }
+
         public ActionResult Register()
         {
             return View();
