@@ -15,12 +15,12 @@
         @*<p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>*@
     </div>
     <div class="col-md-4">
-        <h2>Your enrolled classes</h2>
+        <h2>@Html.ActionLink("Your enrolled classes", "StudentClasses", "Home")</h2>
         <p>See the classes in which you're enrolled.</p>
         @*<p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>*@
     </div>
     <div class="col-md-4">
-        <h2>@Html.ActionLink("Enroll in a class", "Enroll", "Home")</h2>
+        <h2>@Html.ActionLink("Enroll in a class", "EnrollinClass", "Home")</h2>
         <p>Take a new class.</p>
         @*<p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>*@
     </div>

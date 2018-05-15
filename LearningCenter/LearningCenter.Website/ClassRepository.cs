@@ -7,8 +7,8 @@ namespace LearningCenter.Website.Repository
 {
     public interface IClassRepository
     {
-        ClassModel[] Classes { get; }
-        ClassModel   Class(int classID);
+        ClassModel[] GetClasses { get; }
+        ClassModel   GetClass   (int classID);
     }
 
     public class ClassModel
@@ -21,7 +21,7 @@ namespace LearningCenter.Website.Repository
 
     public class ClassRepository : IClassRepository
     {
-        public ClassModel[] Classes
+        public ClassModel[] GetClasses
         {
             get
             {
@@ -37,7 +37,7 @@ namespace LearningCenter.Website.Repository
             }
         }
 
-        public ClassModel Class(int classId)
+        public ClassModel GetClass(int classId)
         {
             var aClass = DatabaseAccessor.Instance.Classes
                 .Where(t => t.ClassId == classId)

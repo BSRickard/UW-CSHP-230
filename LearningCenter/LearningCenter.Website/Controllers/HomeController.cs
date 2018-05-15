@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using LearningCenter.Website.Business;
 using LearningCenter.Website.Models;
 
 // Student: Brian Rickard
@@ -44,16 +45,22 @@ namespace LearningCenter.Website.Controllers
 
         public ActionResult ClassList()
         {
-            var classes = classManager.Classes
-                .Select(t => new LearningCenter.Website.Models.ClassModel(t.Id, t.Name, t.Description, t.Price))
+            var classes = classManager.GetClasses
+                .Select(t => new Models.ClassModel(t.Id, t.Name, t.Description, t.Price))
                 .ToArray();
             var model = new ClassListModel { Classes = classes };
             return View(model);
         }
 
-        public ActionResult Enroll()
+        public ActionResult EnrollinClass()
         {
-            var classes = classManager.Classes
+            var user = (Models.UserModel)Session["User"];
+            if (null == user)
+            {
+                return View("LogIn");
+            }
+
+            var classes = classManager.GetClasses
                 .Select(t => new LearningCenter.Website.Models.ClassModel(t.Id, t.Name, t.Description, t.Price))
                 .ToArray();
             var model = new ClassListModel { Classes = classes };
@@ -63,10 +70,26 @@ namespace LearningCenter.Website.Controllers
         [HttpPost]
         // TODO: Need to work out how to get the selection made on Enroll.cshtml
         // Tried various types of parameters (ClassListModel, string, int) - always null (so far)
-        public ActionResult Enroll(string aClass, string returnUrl)
+        public ActionResult EnrollinClass(FormCollection fc, string returnUrl)
         {
-            return View();
+            var user = (Models.UserModel)Session["User"];
+            if (null == user)
+            {
+                return View("LogIn");
+            }
+            //ClassModel classToAdd = ;
+            int userId = user.Id;
+            ViewBag.Id = fc["Id"];
+            return View("Index");
+        }
 
+        public ActionResult StudentClasses()
+        {
+            var classes = classManager.GetClasses
+                .Select(t => new LearningCenter.Website.Models.ClassModel(t.Id, t.Name, t.Description, t.Price))
+                .ToArray();
+            var model = new ClassListModel { Classes = classes };
+            return View();
         }
 
         public ActionResult Register()

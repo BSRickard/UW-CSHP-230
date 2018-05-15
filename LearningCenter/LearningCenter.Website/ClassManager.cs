@@ -4,12 +4,12 @@ using System.Linq;
 using System.Web;
 using LearningCenter.Website.Repository;
 
-namespace LearningCenter.Website
+namespace LearningCenter.Website.Business
 {
     public interface IClassManager
     {
-        ClassModel[] Classes { get; }
-        ClassModel   Class   (int classId);
+        ClassModel[] GetClasses { get; }
+        ClassModel   GetClass   (int classId);
     }
 
     public class ClassModel
@@ -37,19 +37,19 @@ namespace LearningCenter.Website
             this.classRepository = classRepository;
         }
 
-        public ClassModel[] Classes
+        public ClassModel[] GetClasses
         {
             get
             {
-                return classRepository.Classes
+                return classRepository.GetClasses
                     .Select(t => new ClassModel (t.Id, t.Name, t.Description, t.Price ))
                     .ToArray();
             }
         }
 
-        public ClassModel Class(int classId)
+        public ClassModel GetClass(int classId)
         {
-            var classModel = classRepository.Class(classId);
+            var classModel = classRepository.GetClass(classId);
             return new ClassModel(classModel.Id, classModel.Name, classModel.Description, classModel.Price);
         }
     }
