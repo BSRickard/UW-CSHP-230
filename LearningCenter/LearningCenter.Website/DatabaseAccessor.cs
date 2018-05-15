@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace LearningCenter.Website
+namespace LearningCenter.Website.Repository
 {
     public class DatabaseAccessor
     {

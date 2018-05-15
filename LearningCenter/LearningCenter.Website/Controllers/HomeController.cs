@@ -11,15 +11,12 @@ namespace LearningCenter.Website.Controllers
     public class HomeController : Controller
     {
         private readonly IClassManager classManager;
-
-        public HomeController()
-        {
-            //this.classManager = new ClassManager();
-        }
+        private readonly IUserManager  userManager;
 
         public HomeController(IClassManager classManager)
         {
             this.classManager = classManager;
+            this.userManager  = userManager;
         }
 
        public ActionResult Index()
@@ -43,7 +40,6 @@ namespace LearningCenter.Website.Controllers
             return View();
         }
 
-        [Authorize]
         public ActionResult ClassList()
         {
             var classes = classManager.Classes
@@ -51,17 +47,11 @@ namespace LearningCenter.Website.Controllers
                 .ToArray();
             var model = new ClassListModel { Classes = classes };
             return View(model);
-
-            //var school = new Entities();
-
-            //foreach (var aClass in school.Classes)
-            //{
-            //    Debug.WriteLine(string.Format("ClassID: {0}\nClassName: {1}\nClassDescription: {2}\nClassPrice: {3}\n",
-            //        aClass.ClassId, aClass.ClassName, aClass.ClassDescription, aClass.ClassPrice));
-            //}
-            //Debug.WriteLine("End.");
-            //return View();
         }
 
+        public ActionResult LogIn()
+        {
+            return View();
+        }
     }
 }

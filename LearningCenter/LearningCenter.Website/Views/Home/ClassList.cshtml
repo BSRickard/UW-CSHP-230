@@ -1,9 +1,23 @@
-﻿@model LearningCenter.Website.Models.ClassModel
+﻿@model LearningCenter.Website.Models.ClassListModel
 @{
     ViewBag.Title = "Class List";
 }
 
 <h2>Classes</h2>
-<p>Class Title: @Model.Name</p>
-<p>Description: @Model.Description</p>
-<p>      Price: @Model.Price</p>
+
+<div class="row">
+    <hr />
+    <div class="col-md-3"><strong>Name</strong></div>
+    <div class="col-md-6"><strong>Description</strong></div>
+    <div class="col-md-2"><strong>Price</strong></div>
+
+    @foreach (var aClass in Model.Classes)
+    {
+        <div>
+            <hr />                                                      @*TODO: Make the horizontal line appear correctly*@
+            <div class="col-md-3">@aClass.Name</div>
+            <div class="col-md-6">@aClass.Description</div>
+            <div class="col-md-2">@aClass.Price.ToString("F02")</div>
+        </div>
+    }
+</div>
