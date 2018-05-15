@@ -13,7 +13,7 @@ namespace LearningCenter.Website.Controllers
         private readonly IClassManager classManager;
         private readonly IUserManager  userManager;
 
-        public HomeController(IClassManager classManager)
+        public HomeController(IClassManager classManager, IUserManager userManager)
         {
             this.classManager = classManager;
             this.userManager  = userManager;
@@ -52,6 +52,38 @@ namespace LearningCenter.Website.Controllers
         public ActionResult LogIn()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult LogIn(LoginModel loginModel, string returnUrl)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = userManager.LogIn(loginModel.UserName, loginModel.Password);
+
+                if (user == null)
+                {
+                    ModelState.AddModelError("", "User name and password do not match.");
+                }
+                else
+                {
+                    Session["User"] = new LearningCenter.Website.Models.UserModel { Id = user.Id, Name = user.Name };
+
+                    System.Web.Security.FormsAuthentication.SetAuthCookie(loginModel.UserName, false);
+
+                    return Redirect(returnUrl ?? "~/");
+                }
+            }
+
+            return View(loginModel);
+        }
+
+        public ActionResult LogOff()
+        {
+            Session["User"] = null;
+            System.Web.Security.FormsAuthentication.SignOut();
+
+            return Redirect("~/");
         }
     }
 }
