@@ -6,6 +6,8 @@ using System.Web;
 using System.Web.Mvc;
 using LearningCenter.Website.Models;
 
+// Student: Brian Rickard
+
 namespace LearningCenter.Website.Controllers
 {
     public class HomeController : Controller
