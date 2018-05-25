@@ -1,0 +1,28 @@
+﻿@model LearningCenter.Website.Models.ClassListModel
+@{
+    ViewBag.Title = "Enroll In Class";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("EnrollinClass", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    if (null != Model)
+    {
+        <div class="form-group">
+            @*<form method="get">*@
+            <select>
+                @foreach (var aClass in Model.Classes)
+                {
+                    <option value="@aClass.Id">@aClass.Name</option>
+                }
+            </select>
+            <input type="submit" value="Add Class" />
+            @*</form>*@
+        </div>
+    }
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
